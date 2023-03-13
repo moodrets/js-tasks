@@ -25,3 +25,17 @@ function debounce(func, wait) {
 }
 
 const debounceCall = debounce(fn(1), 1000);
+
+const debounce = (fn, ms) => {
+    let lastTimeout;
+
+    return function () {
+        const fnCall = () => {
+            fn.apply(this, arguments);
+        };
+
+        clearTimeout(lastTimeout);
+
+        lastTimeout = setTimeout(fnCall, ms);
+    };
+};
